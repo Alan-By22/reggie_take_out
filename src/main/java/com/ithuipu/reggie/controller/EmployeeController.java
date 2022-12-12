@@ -1,18 +1,18 @@
 package com.ithuipu.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ithuipu.reggie.common.R;
 import com.ithuipu.reggie.entity.Employee;
 import com.ithuipu.reggie.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * @className: EmployeeController
@@ -75,5 +75,55 @@ public class EmployeeController {
         //清理Session中保存的员工id
         request.getSession().removeAttribute("employee");
         return R.success("成功退出当前用户");
+    }
+
+
+    /**
+     * 测试查看路径,发送json数据,post
+     * name: "12", phone: "18392969156", sex: "1", idNumber: "610159999999999999", username: "159"
+     * <p>
+     * 新增员工
+     */
+    @PostMapping
+    public R<String> save(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info("新增员工,员工信息{}", employee.toString());
+
+        //1.设置初始密码123456,需要MD5加密
+        employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+        //2.创建时间,修改时间信息
+        employee.setCreateTime(LocalDateTime.now());
+        employee.setUpdateTime(LocalDateTime.now());
+
+        //获取当前登陆的id
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        //创建人,修改人信息
+        employee.setCreateUser(empId);
+        employee.setUpdateUser(empId);
+
+        employeeService.save(employee);
+        return R.success("添加成功");
+    }
+
+    /**
+     * http://localhost:8080/employee/page?page=1&pageSize=10&name=admin
+     * 请求方式GET请求路径/employee/page请求参数page , pageSize , name
+     * <p>
+     * 员工信息分页查询
+     */
+    @GetMapping("/page")
+    public R<Page> page(int page, int pageSize, String name) {
+        log.info("page={},pageSize={},name={}", page, pageSize, name);
+        //构造分页构造器
+        Page pageInfo = new Page(page, pageSize);
+        //构造条件构造器
+        LambdaQueryWrapper<Employee> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        //添加过滤条件
+        lambdaQueryWrapper.like(StringUtils.isNotEmpty(name), Employee::getName, name);
+        //添加排序条件
+        lambdaQueryWrapper.orderByDesc(Employee::getUpdateTime);
+
+        //执行查询
+        employeeService.page(pageInfo, lambdaQueryWrapper);
+        return R.success(pageInfo);
     }
 }
