@@ -70,5 +70,5 @@
       return Promise.reject(error)
     }
   )
-win.$axios = service
+  win.$axios = service
 })(window);

@@ -106,7 +106,7 @@ public class EmployeeController {
 
     /**
      * http://localhost:8080/employee/page?page=1&pageSize=10&name=admin
-     * 请求方式GET请求路径/employee/page请求参数page , pageSize , name
+     * 请求方式GET请求  路径/employee/page请求参数page , pageSize , name
      * <p>
      * 员工信息分页查询
      */
@@ -128,7 +128,7 @@ public class EmployeeController {
     }
 
     /**
-     * 请求方式PUT请求路径/employee请求参数{"id":xxx,"status":xxx}---member-list.html-statusHandle
+     * 请求方式PUT请求   路径/employee请求参数{"id":xxx,"status":xxx}---member-list.html-statusHandle
      * <p>
      * 根据id修改员工展示信息
      */
@@ -144,4 +144,23 @@ public class EmployeeController {
         employeeService.updateById(employee);
         return R.success("员工信息修改成功");
     }
+
+
+    /**
+     * 请求方式GET  请求路径/employee/{id}
+     * <p>
+     * 根据id查询员工信息
+     */
+    @GetMapping("/{id}")
+    public R<Employee> selectById(@PathVariable Long id) {
+        log.info("根据id查询员工的信息----");
+
+        Employee employee = employeeService.getById(id);
+        if (employee != null) {
+            return R.success(employee);
+        }
+        return R.error("查询失败,请检查后重试...");
+    }
+
+
 }
