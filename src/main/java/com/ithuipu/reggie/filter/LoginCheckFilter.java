@@ -20,6 +20,7 @@ import java.io.IOException;
 
 @Slf4j
 @WebFilter(filterName = "loginCheckFilter", urlPatterns = "/*")
+
 public class LoginCheckFilter implements Filter {
 
     /**
@@ -65,6 +66,7 @@ public class LoginCheckFilter implements Filter {
 
         //6.如果用户未登录,则返回未登录结果,通过输出流的方式向客户端页面响应
         servletResponse.getWriter().write(JSON.toJSONString(R.error("NOTLOGIN")));
+
         return;
 
     }

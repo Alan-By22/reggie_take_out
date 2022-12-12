@@ -126,4 +126,22 @@ public class EmployeeController {
         employeeService.page(pageInfo, lambdaQueryWrapper);
         return R.success(pageInfo);
     }
+
+    /**
+     * 请求方式PUT请求路径/employee请求参数{"id":xxx,"status":xxx}---member-list.html-statusHandle
+     * <p>
+     * 根据id修改员工展示信息
+     */
+    @PutMapping
+    public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info(employee.toString());
+
+        Long empId = (Long) request.getSession().getAttribute("employee");
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(empId);
+
+        employeeService.updateById(employee);
+        return R.success("员工信息修改成功");
+    }
 }
