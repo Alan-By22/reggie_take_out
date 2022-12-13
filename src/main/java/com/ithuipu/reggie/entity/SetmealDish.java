@@ -1,9 +1,7 @@
 package com.ithuipu.reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,22 +9,20 @@ import java.util.Date;
 
 
 /**
- * @className: Dish
+ * @className: SetmealDish
  * @author: Mr.BingYu
  * @description: 
- * @date: 2022/12/12 23:00
+ * @date: 2022/12/13 11:10
  **/
 
     
 
 /**
-    * 菜品管理
+    * 套餐菜品关系
     */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@TableName(value = "dish")
-public class Dish {
+@TableName(value = "setmeal_dish")
+public class SetmealDish {
     /**
      * 主键
      */
@@ -34,49 +30,37 @@ public class Dish {
     private Long id;
 
     /**
-     * 菜品名称
+     * 套餐id 
+     */
+    @TableField(value = "setmeal_id")
+    private String setmealId;
+
+    /**
+     * 菜品id
+     */
+    @TableField(value = "dish_id")
+    private String dishId;
+
+    /**
+     * 菜品名称 （冗余字段）
      */
     @TableField(value = "name")
     private String name;
 
     /**
-     * 菜品分类id
-     */
-    @TableField(value = "category_id")
-    private Long categoryId;
-
-    /**
-     * 菜品价格
+     * 菜品原价（冗余字段）
      */
     @TableField(value = "price")
     private BigDecimal price;
 
     /**
-     * 商品码
+     * 份数
      */
-    @TableField(value = "code")
-    private String code;
+    @TableField(value = "copies")
+    private Integer copies;
 
     /**
-     * 图片
-     */
-    @TableField(value = "image")
-    private String image;
-
-    /**
-     * 描述信息
-     */
-    @TableField(value = "description")
-    private String description;
-
-    /**
-     * 0 停售 1 起售
-     */
-    @TableField(value = "status")
-    private Integer status;
-
-    /**
-     * 顺序
+     * 排序
      */
     @TableField(value = "sort")
     private Integer sort;
@@ -113,19 +97,15 @@ public class Dish {
 
     public static final String COL_ID = "id";
 
-    public static final String COL_NAME = "name";
+    public static final String COL_SETMEAL_ID = "setmeal_id";
 
-    public static final String COL_CATEGORY_ID = "category_id";
+    public static final String COL_DISH_ID = "dish_id";
+
+    public static final String COL_NAME = "name";
 
     public static final String COL_PRICE = "price";
 
-    public static final String COL_CODE = "code";
-
-    public static final String COL_IMAGE = "image";
-
-    public static final String COL_DESCRIPTION = "description";
-
-    public static final String COL_STATUS = "status";
+    public static final String COL_COPIES = "copies";
 
     public static final String COL_SORT = "sort";
 

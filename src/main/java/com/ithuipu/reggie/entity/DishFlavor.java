@@ -1,31 +1,27 @@
 package com.ithuipu.reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 
 
 /**
- * @className: Category
+ * @className: DishFlavor
  * @author: Mr.BingYu
  * @description: 
- * @date: 2022/12/12 23:54
+ * @date: 2022/12/13 11:09
  **/
 
     
 
 /**
-    * 菜品及套餐分类
+    * 菜品口味关系表
     */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@TableName(value = "category")
-public class Category {
+@TableName(value = "dish_flavor")
+public class DishFlavor {
     /**
      * 主键
      */
@@ -33,22 +29,22 @@ public class Category {
     private Long id;
 
     /**
-     * 类型   1 菜品分类 2 套餐分类
+     * 菜品
      */
-    @TableField(value = "type")
-    private Integer type;
+    @TableField(value = "dish_id")
+    private Long dishId;
 
     /**
-     * 分类名称
+     * 口味名称
      */
     @TableField(value = "name")
     private String name;
 
     /**
-     * 顺序
+     * 口味数据list
      */
-    @TableField(value = "sort")
-    private Integer sort;
+    @TableField(value = "value")
+    private String value;
 
     /**
      * 创建时间
@@ -74,13 +70,19 @@ public class Category {
     @TableField(value = "update_user",fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Integer isDeleted;
+
     public static final String COL_ID = "id";
 
-    public static final String COL_TYPE = "type";
+    public static final String COL_DISH_ID = "dish_id";
 
     public static final String COL_NAME = "name";
 
-    public static final String COL_SORT = "sort";
+    public static final String COL_VALUE = "value";
 
     public static final String COL_CREATE_TIME = "create_time";
 
@@ -89,4 +91,6 @@ public class Category {
     public static final String COL_CREATE_USER = "create_user";
 
     public static final String COL_UPDATE_USER = "update_user";
+
+    public static final String COL_IS_DELETED = "is_deleted";
 }

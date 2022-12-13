@@ -1,9 +1,7 @@
 package com.ithuipu.reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,33 +9,25 @@ import java.util.Date;
 
 
 /**
- * @className: Dish
+ * @className: Setmeal
  * @author: Mr.BingYu
  * @description: 
- * @date: 2022/12/12 23:00
+ * @date: 2022/12/13 11:10
  **/
 
     
 
 /**
-    * 菜品管理
+    * 套餐
     */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@TableName(value = "dish")
-public class Dish {
+@TableName(value = "setmeal")
+public class Setmeal {
     /**
      * 主键
      */
     @TableId(value = "id", type = IdType.INPUT)
     private Long id;
-
-    /**
-     * 菜品名称
-     */
-    @TableField(value = "name")
-    private String name;
 
     /**
      * 菜品分类id
@@ -46,22 +36,28 @@ public class Dish {
     private Long categoryId;
 
     /**
-     * 菜品价格
+     * 套餐名称
+     */
+    @TableField(value = "name")
+    private String name;
+
+    /**
+     * 套餐价格
      */
     @TableField(value = "price")
     private BigDecimal price;
 
     /**
-     * 商品码
+     * 状态 0:停用 1:启用
+     */
+    @TableField(value = "status")
+    private Integer status;
+
+    /**
+     * 编码
      */
     @TableField(value = "code")
     private String code;
-
-    /**
-     * 图片
-     */
-    @TableField(value = "image")
-    private String image;
 
     /**
      * 描述信息
@@ -70,16 +66,10 @@ public class Dish {
     private String description;
 
     /**
-     * 0 停售 1 起售
+     * 图片
      */
-    @TableField(value = "status")
-    private Integer status;
-
-    /**
-     * 顺序
-     */
-    @TableField(value = "sort")
-    private Integer sort;
+    @TableField(value = "image")
+    private String image;
 
     /**
      * 创建时间
@@ -113,21 +103,19 @@ public class Dish {
 
     public static final String COL_ID = "id";
 
-    public static final String COL_NAME = "name";
-
     public static final String COL_CATEGORY_ID = "category_id";
+
+    public static final String COL_NAME = "name";
 
     public static final String COL_PRICE = "price";
 
-    public static final String COL_CODE = "code";
+    public static final String COL_STATUS = "status";
 
-    public static final String COL_IMAGE = "image";
+    public static final String COL_CODE = "code";
 
     public static final String COL_DESCRIPTION = "description";
 
-    public static final String COL_STATUS = "status";
-
-    public static final String COL_SORT = "sort";
+    public static final String COL_IMAGE = "image";
 
     public static final String COL_CREATE_TIME = "create_time";
 
