@@ -26,7 +26,7 @@ public class SetmealDish {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableField(value = "id")
     private Long id;
 
     /**

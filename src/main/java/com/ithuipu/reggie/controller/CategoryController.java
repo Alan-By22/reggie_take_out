@@ -64,4 +64,18 @@ public class CategoryController {
         categoryService.save(category);
         return R.success("新增分类成功");
     }
+
+    /**
+     * 请求网址: http://localhost:8080/category?ids=1602572423545331713
+     * 请求方法: DELETE
+     * <p>
+     * 根据id删除分类
+     */
+    @DeleteMapping
+    public R<String> delete(Long id) {
+        log.info("删除分类,id为:{}", id);
+
+        categoryService.removeById(id);
+        return R.success("删除菜品成功");
+    }
 }

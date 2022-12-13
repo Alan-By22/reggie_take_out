@@ -25,7 +25,7 @@ public class AddressBook {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableId(value = "id")
     private Long id;
 
     /**
