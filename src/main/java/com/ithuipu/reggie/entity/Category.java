@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 
@@ -29,7 +29,7 @@ public class Category {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableField(value = "id")
     private Long id;
 
     /**
@@ -54,13 +54,13 @@ public class Category {
      * 创建时间
      */
     @TableField(value = "create_time",fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
     @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 创建人
