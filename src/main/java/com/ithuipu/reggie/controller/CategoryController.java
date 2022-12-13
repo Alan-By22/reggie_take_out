@@ -79,4 +79,17 @@ public class CategoryController {
         categoryService.remove(ids);
         return R.success("分类信息删除成功");
     }
+
+    /**
+     * 请求方式PUT请求路径/category请求参数{id: "1399923597874081794", name: "超值午餐", sort: 0}
+     * 请求网址: http://localhost:8080/category
+     * 请求方法: PUT
+     */
+    @PutMapping
+    public R<String> update(@RequestBody Category category) {
+        log.info("修改分类信息:{}", category);
+
+        categoryService.updateById(category);
+        return R.success("修改分类信息成功");
+    }
 }
