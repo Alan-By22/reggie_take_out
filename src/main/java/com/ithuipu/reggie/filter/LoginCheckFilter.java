@@ -1,6 +1,7 @@
 package com.ithuipu.reggie.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.ithuipu.reggie.common.BaseContext;
 import com.ithuipu.reggie.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -29,12 +30,12 @@ public class LoginCheckFilter implements Filter {
     public static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest servletRequest = (HttpServletRequest) request;
-        HttpServletResponse servletResponse = (HttpServletResponse) response;
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         //1.请求本次请求的URI
-        String requestURI = servletRequest.getRequestURI();
+        String requestURI = request.getRequestURI();
         log.info("拦截到请求:{}", requestURI);
         //2.定义不需要处理的请求路径
         String[] urls = new String[]{
@@ -50,16 +51,26 @@ public class LoginCheckFilter implements Filter {
         //4.如果不需要处理,就会放行
         if (check) {
             log.info("本次请求{}不用处理", requestURI);
-            chain.doFilter(request, response);
+            filterChain.doFilter(request, response);
             return;
         }
 
         //5.判断登陆的状态,如果已经登陆,则直接放行
-        if (servletRequest.getSession().getAttribute("employee") != null) {
-            log.info("用户已经登陆,id为{}", servletRequest.getSession().getAttribute("employee"));
-            chain.doFilter(request, response);
+        if (request.getSession().getAttribute("employee") != null) {
+            log.info("用户已经登陆,id为{}", request.getSession().getAttribute("employee"));
+
+            //获得线程id
+            long id = Thread.currentThread().getId();
+            log.info("filterId为：{}", id);
+
+            //LoginCheckFilter中存放当前登录用户到ThreadLocal**
+            Long empId = (Long) request.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(empId);
+
+            filterChain.doFilter(request, response);
             return;
         }
+
 
         //用户未登录
         log.info("用户未登录");

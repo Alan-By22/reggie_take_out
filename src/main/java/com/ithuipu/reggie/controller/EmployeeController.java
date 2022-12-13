@@ -64,6 +64,8 @@ public class EmployeeController {
         //6、登录成功，将员工id存入Session并返回登录成功结果
         request.getSession().setAttribute("employee", emp.getId());
         return R.success(emp);
+
+
     }
 
     /**
@@ -134,6 +136,10 @@ public class EmployeeController {
     @PutMapping
     public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
         log.info(employee.toString());
+
+        //获得线程id
+        long id = Thread.currentThread().getId();
+        log.info("ControllerId为：{}",id);
 
         //Long empId = (Long) request.getSession().getAttribute("employee");
         //employee.setUpdateTime(LocalDateTime.now());
