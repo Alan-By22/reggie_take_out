@@ -25,7 +25,6 @@ public class AddressBook {
     /**
      * 主键
      */
-    @TableId(value = "id")
     private Long id;
 
     /**

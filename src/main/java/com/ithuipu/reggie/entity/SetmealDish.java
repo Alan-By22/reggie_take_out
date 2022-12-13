@@ -26,7 +26,6 @@ public class SetmealDish {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**

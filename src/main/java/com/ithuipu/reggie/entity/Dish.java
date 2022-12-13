@@ -30,7 +30,6 @@ public class Dish {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**

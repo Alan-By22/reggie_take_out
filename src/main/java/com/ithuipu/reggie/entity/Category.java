@@ -29,7 +29,6 @@ public class Category {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**

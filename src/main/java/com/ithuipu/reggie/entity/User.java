@@ -24,7 +24,6 @@ public class User {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**

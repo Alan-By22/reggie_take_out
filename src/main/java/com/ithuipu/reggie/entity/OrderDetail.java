@@ -26,7 +26,6 @@ public class OrderDetail {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**

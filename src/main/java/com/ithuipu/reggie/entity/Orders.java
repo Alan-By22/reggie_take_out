@@ -27,7 +27,6 @@ public class Orders {
     /**
      * 主键
      */
-    @TableField(value = "id")
     private Long id;
 
     /**
