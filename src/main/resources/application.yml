@@ -17,3 +17,15 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+
+
+# 七牛云配置
+# bucket是创建的存储空间名
+# path对应存储空间的访问域名
+#qiniu:
+#  accessKey: ANXCV6btpV7qJ0b3Krw27vxGue4RoCa5S_SJpk3q
+#  secretKey: t-S7LvOwQbJYhBb8jzxuKgZv8lkLapGFjMc5gynu
+#  bucket: ithuipu-reggie
+#  path: D://七牛云/
+#  baseUploadUrl: D://七牛云/
+#  imageUrl: http://rlc9a603k.hd-bkt.clouddn.com/

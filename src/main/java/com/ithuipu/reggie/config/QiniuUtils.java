@@ -15,9 +15,9 @@ import com.qiniu.util.Auth;
  */
 public class QiniuUtils {
 
-    public static String accessKey = "4i5ZgF-Ou1aM2FhkCqOGdr7VsATjjdM8CEMPtwJc";
-    public static String secretKey = "ALj4Qpea69dHTpBzsj7PNHqzxBteVU5VhLsl5lvN";
-    public static String bucket = "ithuipu-1";
+    public static String accessKey = "ANXCV6btpV7qJ0b3Krw27vxGue4RoCa5S_SJpk3q";
+    public static String secretKey = "t-S7LvOwQbJYhBb8jzxuKgZv8lkLapGFjMc5gynu";
+    public static String bucket = "ithuipu-reggie";
 
     public static void upload2Qiniu(String filePath, String fileName) {
         //构造一个带指定Zone对象的配置类
