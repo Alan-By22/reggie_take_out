@@ -41,13 +41,10 @@
         },
         methods: {
           handleAvatarSuccess (response, file, fileList) {
+              console.log("-----------")
+              console.log(response.data)
               this.imageUrl = "http://rmtxpqaxl.hd-bkt.clouddn.com/" + response.data;
-              this.$message({
-                  message: response.message,
-                  type: response.flag ? 'success' : 'error'
-              })
-              //2.将图片的名字保存给表单---让表单提交的时候,带到后台
-              this.formData.img = response.data;
+
           },
           beforeUpload (file) {
             if(file){

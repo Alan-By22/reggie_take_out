@@ -2,7 +2,9 @@ package com.ithuipu.reggie.controller;
 
 import com.ithuipu.reggie.common.R;
 import com.ithuipu.reggie.config.QiniuUtils;
+import com.ithuipu.reggie.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,14 +28,17 @@ import java.util.UUID;
 @RequestMapping("/common")
 public class CommonController {
 
-    /*@Value("${reggie.path}")
-    private String basePath;*/
-
+    /**
+     * 注入service
+     */
+    @Autowired
+    private CategoryService categoryService;
     /**
      * 文件上传
      */
     @PostMapping("/upload")
     public R<String> upload(MultipartFile file) {
+        log.info("file:...." + file.getOriginalFilename());
         try {
             //1.解决重名问题
             String originalFilename = file.getOriginalFilename();
@@ -52,5 +57,6 @@ public class CommonController {
         }
         return R.error("文件上传失败！");
     }
+
 
 }
