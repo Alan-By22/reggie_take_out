@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ReggieTakeOutApplicationTests {
 
+    //http://rmtxpqaxl.hd-bkt.clouddn.com/FsCwrZu57gCtNBR4ljkUaF6Ero5q
     @Test
     void contextLoads() {
         //构造一个带指定 Region 对象的配置类
@@ -27,9 +28,9 @@ class ReggieTakeOutApplicationTests {
         String secretKey = "t-S7LvOwQbJYhBb8jzxuKgZv8lkLapGFjMc5gynu";
         String bucket = "ithuipu-reggie";
         //如果是Windows情况下，格式是 D:\\qiniu\\test.png
-        String localFilePath = "C:\\Users\\11752\\Pictures\\Camera Roll\\u=1208614639,3032255268&fm=193&f=GIF.jpg";
+        String localFilePath = "C:\\Users\\11752\\Desktop\\图片资源\\e476f679-5c15-436b-87fa-8c4e9644bf33.jpeg";
         //默认不指定key的情况下，以文件内容的hash值作为文件名
-        String key = "鸟巢1.jpg";
+        String key = null;
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket);
         try {
