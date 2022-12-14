@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @className: CategoryController
  * @author: Mr.BingYu
@@ -92,4 +94,26 @@ public class CategoryController {
         categoryService.updateById(category);
         return R.success("修改分类信息成功");
     }
+
+    /**
+     * 请求网址: http://localhost:8080/category/list?type=1
+     * 请求方法: GET
+     * <p>菜品管理-新建菜品-菜品分类下拉框
+     * 根据条件查询分类数据
+     */
+    @GetMapping("/list")
+    public R<List<Category>> list(Category category) {
+        //1.条件构造器
+        LambdaQueryWrapper<Category> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        //2.添加条件
+        lambdaQueryWrapper.eq(category.getType() != null, Category::getType, category.getType());
+        //3.添加排序的条件-----查询的结果按照sort排序字段进行升序排序，如果sort相同，再按照修改时间倒序排序
+        lambdaQueryWrapper.orderByDesc(Category::getSort).orderByDesc(Category::getCreateTime);
+
+        List<Category> list = categoryService.list(lambdaQueryWrapper);
+        return R.success(list);
+    }
+
+
 }
+

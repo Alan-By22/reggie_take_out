@@ -51,7 +51,7 @@ public class CommonController {
             //2.使用七牛云工具类
             QiniuUtils.upload2Qiniu(file.getBytes(), fileName);
             //需要返回文件名，以便保存到数据库
-            return R.success(fileName);
+            return R.success("http://rmtxpqaxl.hd-bkt.clouddn.com/"+fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
