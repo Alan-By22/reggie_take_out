@@ -1,7 +1,7 @@
 package com.ithuipu.reggie.service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ithuipu.reggie.DishDto;
+import com.ithuipu.reggie.entity.DishDto;
 import com.ithuipu.reggie.entity.Dish;
 import com.ithuipu.reggie.entity.DishFlavor;
 import com.ithuipu.reggie.mapper.DishMapper;

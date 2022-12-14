@@ -1,7 +1,5 @@
-package com.ithuipu.reggie;
+package com.ithuipu.reggie.entity;
 
-import com.ithuipu.reggie.entity.Dish;
-import com.ithuipu.reggie.entity.DishFlavor;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,6 +13,7 @@ public class DishDto extends Dish {
 
     private List<DishFlavor> flavors = new ArrayList<>();
 
+    /**菜品分类名称*/
     private String categoryName;
 
     private Integer copies;
