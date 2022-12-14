@@ -100,4 +100,35 @@ public class DishController {
         dishService.saveWithFlavor(dishDto);
         return R.success("添加菜品成功");
     }
+
+
+    /**
+     * 请求方式GET
+     * 请求路径/dish/{id}
+     * <p>
+     * 根据id查询菜品信息和对应的口味
+     *
+     * @PathVariable : 该注解可以用来提取url路径中传递的请求参数
+     */
+    @GetMapping("/{id}")
+    public R<DishDto> get(@PathVariable Long id) {
+        DishDto dishDto = dishService.getByIdWithFlavor(id);
+        return R.success(dishDto);
+    }
+
+
+    /**
+     * 请求方式PUT
+     * 请求路径/dish
+     * 请求参数json格式数据
+     * 修改菜品
+     */
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto) {
+        log.info(dishDto.toString());
+
+        dishService.updateWithFlavor(dishDto);
+        return R.success("修改菜品成功");
+    }
+
 }
