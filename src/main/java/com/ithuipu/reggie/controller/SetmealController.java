@@ -11,10 +11,7 @@ import com.ithuipu.reggie.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +46,7 @@ public class SetmealController {
      * <p>
      * 保存
      */
+    @PostMapping
     public R<String> save(@RequestBody SetmealDto setmealDto) {
         log.info("套餐信息:{}", setmealDto);
 

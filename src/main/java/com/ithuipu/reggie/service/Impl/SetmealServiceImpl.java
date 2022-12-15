@@ -7,7 +7,9 @@ import com.ithuipu.reggie.entity.SetmealDto;
 import com.ithuipu.reggie.mapper.SetmealMapper;
 import com.ithuipu.reggie.service.SetmealDtoService;
 import com.ithuipu.reggie.service.SetmealService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
     /**
      * 注入service
      */
+    @Autowired
     private SetmealDtoService setmealDtoService;
 
     /**
@@ -37,6 +40,7 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
      * 新增套餐,同事需要保存套餐和菜品的关联关系
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveWithDish(SetmealDto setmealDto) {
         //保存套餐的基本信息,操作setmeal,执行insert
         this.save(setmealDto);
