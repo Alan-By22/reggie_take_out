@@ -9,6 +9,22 @@ spring:
       url: jdbc:mysql://localhost:3306/reggie
       username: root
       password: 123456789
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 30000
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 20
+        #最大阻塞等待时长
+        max-wait: -1
+        #连接池最大空闲连接
+        max-idle: 50
+        #连接池最小空闲连接
+        min-idle: 0
 mybatis-plus:
   configuration:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
@@ -18,14 +34,3 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 
-
-# 七牛云配置
-# bucket是创建的存储空间名
-# path对应存储空间的访问域名
-#qiniu:
-#  accessKey: ANXCV6btpV7qJ0b3Krw27vxGue4RoCa5S_SJpk3q
-#  secretKey: t-S7LvOwQbJYhBb8jzxuKgZv8lkLapGFjMc5gynu
-#  bucket: ithuipu-reggie
-#  path: D://七牛云/
-#  baseUploadUrl: D://七牛云/
-#  imageUrl: http://rlc9a603k.hd-bkt.clouddn.com/
