@@ -131,4 +131,27 @@ public class DishController {
         return R.success("修改菜品成功");
     }
 
+    /**
+     * 请求方式GET
+     * 请求路径/dish/list
+     * 请求参数?categoryId=1602572519204823042
+     * 请求网址: http://localhost:8080/dish/list?categoryId=1602572519204823042
+     * 请求方法: GET
+     * <p>
+     * 根据条件查询对应的菜品数据
+     */
+    @GetMapping("/list")
+    public R<List<Dish>> list(Dish dish) {
+        //构造查询条件
+        LambdaQueryWrapper<Dish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
+        //添加条件,查询状态为1(起售状态)的菜品
+        lambdaQueryWrapper.eq(Dish::getStatus, 1);
+        //添加排序条件
+        lambdaQueryWrapper.orderByDesc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = dishService.list(lambdaQueryWrapper);
+
+        return R.success(list);
+    }
 }

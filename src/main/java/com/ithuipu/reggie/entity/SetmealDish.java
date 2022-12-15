@@ -1,10 +1,12 @@
 package com.ithuipu.reggie.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 
@@ -23,6 +25,8 @@ import java.util.Date;
 @Data
 @TableName(value = "setmeal_dish")
 public class SetmealDish {
+
+    private static final long serialVersionUID = 1L;
     /**
      * 主键
      */
@@ -32,7 +36,7 @@ public class SetmealDish {
      * 套餐id 
      */
     @TableField(value = "setmeal_id")
-    private String setmealId;
+    private Long setmealId;
 
     /**
      * 菜品id
@@ -68,13 +72,13 @@ public class SetmealDish {
      * 创建时间
      */
     @TableField(value = "create_time",fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
     @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 创建人
